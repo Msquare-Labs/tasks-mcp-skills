@@ -57,9 +57,9 @@ Markdown and assume nothing about the host.
 
 ## Three things worth knowing before you start
 
-**Finishing a task takes two fields.** Setting Status to Done does not
-complete it. Set `state: "completed"` as well, or you get a board where every
-card reads Done and nothing is actually finished.
+**Moving a task to the last status option completes it**, and moving it off
+again reopens it. Setting `state` directly still works and wins when a task is
+finished but its column belongs elsewhere.
 
 **Only tasks can be deleted.** Projects and fields, once created, stay. Create
 them deliberately rather than to try something out.

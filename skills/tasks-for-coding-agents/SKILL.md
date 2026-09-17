@@ -22,22 +22,26 @@ list_fields  { project_id }    the field ids and option ids you need to write
 Field sets differ per project. You cannot write a value without the ids, and
 the ids are not guessable. Do this once at the start rather than per task.
 
-## Finishing a task takes two things
+## Finishing a task
 
-This is the mistake that makes a board useless, so learn it first:
+Move it to the last status option. That completes it:
 
 ```jsonc
 update_task {
   task_id: "...",
-  state: "completed",                              // the task is done
-  properties: [{ field_id: "<Status>", value: ["<Done>"] }]   // the column says so
+  properties: [{ field_id: "<Status>", value: ["<Done>"] }]
 }
 ```
 
-**Setting Status to Done does not complete the task.** They are separate. A
-board where every card reads Done and every task is still pending is what
-happens when an agent sets one and not the other. Set both, and set both back
-when reopening.
+Moving it off that option again reopens it. This is the same rule the app has
+always followed when someone taps a status.
+
+Set `state` explicitly only when the task is finished but its column belongs
+somewhere else. An explicit state wins over whatever the column says:
+
+```jsonc
+update_task { task_id: "...", state: "completed" }
+```
 
 ## The loop
 
@@ -72,7 +76,7 @@ memory of you, which may well be you tomorrow. "Fixed" is useless. "Indexes
 added, p50 went 135ms to 21ms, the tasks endpoint did not move and I do not
 yet know why" is what the next session needs.
 
-**Finish it,** with both fields as above.
+**Finish it** by moving the status to its last option, which completes it.
 
 ## Turning a repo into a board
 

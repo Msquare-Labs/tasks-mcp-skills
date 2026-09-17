@@ -113,19 +113,20 @@ update_task {
 
 ## Finishing
 
-Two fields, always:
+Move it to the last status option:
 
 ```jsonc
 update_task {
   task_id: "...",
-  state: "completed",
   properties: [{ field_id: "<Status>", value: ["<the last status option>"] }]
 }
 ```
 
-Status alone does not complete a task. A board full of Done cards that are all
-still pending is the normal result of one agent getting this wrong, and it is
-invisible until someone filters by state.
+That completes the task. Moving it off again reopens it, which is what you
+want when a reviewer sends something back.
+
+Set `state` explicitly only when a task is done but its column belongs
+elsewhere. An explicit state wins over the column.
 
 ## Showing the person you are working
 

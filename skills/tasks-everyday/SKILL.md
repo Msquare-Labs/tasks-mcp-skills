@@ -59,17 +59,23 @@ plus `Feel=Hard` can be filtered; one Tags column holding both cannot.
 
 ## Completing something
 
+Move it to the last status option:
+
 ```jsonc
 update_task {
   task_id: "...",
-  state: "completed",
   properties: [{ field_id: "<Status>", value: ["<the last status option>"] }]
 }
 ```
 
-**Both.** Setting Status to Done does not complete a task on its own, and a
-board of Done-but-not-completed tasks is confusing in a way that is hard to
-spot and annoying to fix.
+That marks it done, the same way tapping the status does in the app. Moving it
+back off that option reopens it.
+
+If a project has no status field, set the state directly:
+
+```jsonc
+update_task { task_id: "...", state: "completed" }
+```
 
 ## Finding things
 
